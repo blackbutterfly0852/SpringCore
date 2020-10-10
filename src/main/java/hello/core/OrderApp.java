@@ -12,16 +12,27 @@ public class OrderApp {
 
 
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
-        OrderService orderService = new OrderServiceImpl();
+        // 1. DIP, OCP 위반
+//        MemberService memberService = new MemberServiceImpl();
+//        OrderService orderService = new OrderServiceImpl();
+//
+//        Long memberId = 1L;
+//        Member member = new Member(memberId,"memberA", Grade.VIP );
+//        memberService.join(member);
+//
+//        Order order = orderService.createOrder(memberId,"itemA",10000);
+//
+//        System.out.println("order = " + order);
+//        System.out.println("calculatePrice = " + order.calculatePrice());
 
-        Long memberId = 1L;
-        Member member = new Member(memberId,"memberA", Grade.VIP );
-        memberService.join(member);
+        // 2. 해결 - AppConfig 활용
+            AppConfig appConfig = new AppConfig();
+            MemberService memberService = appConfig.memberService();
+            OrderService orderService = appConfig.orderService();
 
-        Order order = orderService.createOrder(memberId,"itemA",10000);
-
-        System.out.println("order = " + order);
-        System.out.println("calculatePrice = " + order.calculatePrice());
+            Member member = new Member(1L,"memberA", Grade.VIP );
+            memberService.join(member);
+            Order order = orderService.createOrder(member.getId(),"itemA",10000);
+            System.out.println("order = " + order);
     }
 }

@@ -8,13 +8,24 @@ import hello.core.member.MemberServiceImpl;
 public class MemberApp {
 
     public static void main(String[] args) {
-        MemberService memberService = new MemberServiceImpl();
-        Member member = new Member(1L, "memberA", Grade.VIP);
-        memberService.join(member);
+        // 1. DIP, OCP 위반
+//        MemberService memberService = new MemberServiceImpl();
+//        Member member = new Member(1L, "memberA", Grade.VIP);
+//        memberService.join(member);
+//
+//        Member findMember = memberService.findMember(1L);
+//
+//        System.out.println("newMember = " + member.getName());
+//        System.out.println("findMember = " + findMember.getName() );
 
-        Member findMember = memberService.findMember(1L);
+        // 2. 해결 - AppConfig 활용
 
-        System.out.println("newMember = " + member.getName());
-        System.out.println("findMember = " + findMember.getName() );
+            AppConfig app = new AppConfig();
+            Member member = new Member(1L, "memberA", Grade.VIP);
+            MemberService memberService = app.memberService();
+            memberService.join(member);
+            Member findMember = memberService.findMember(1L);
+            System.out.println("findMember = " + findMember.getName() );
+
     }
 }
