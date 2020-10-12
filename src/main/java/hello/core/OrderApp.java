@@ -7,6 +7,8 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.order.Order;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class OrderApp {
 
@@ -26,10 +28,19 @@ public class OrderApp {
 //        System.out.println("calculatePrice = " + order.calculatePrice());
 
         // 2. 해결 - AppConfig 활용
-            AppConfig appConfig = new AppConfig();
-            MemberService memberService = appConfig.memberService();
-            OrderService orderService = appConfig.orderService();
+//            AppConfig appConfig = new AppConfig();
+//            MemberService memberService = appConfig.memberService();
+//            OrderService orderService = appConfig.orderService();
+//
+//            Member member = new Member(1L,"memberA", Grade.VIP );
+//            memberService.join(member);
+//            Order order = orderService.createOrder(member.getId(),"itemA",10000);
+//            System.out.println("order = " + order);
 
+        // 3. Spring 전환
+            ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+            MemberService memberService = ac.getBean("memberService", MemberService.class);
+            OrderService orderService = ac.getBean("orderService", OrderService.class);
             Member member = new Member(1L,"memberA", Grade.VIP );
             memberService.join(member);
             Order order = orderService.createOrder(member.getId(),"itemA",10000);
