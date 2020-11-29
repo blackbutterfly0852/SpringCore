@@ -42,23 +42,23 @@ public class AppConfig {
 //    }
 
     // 3. 2.의 코드를 Spring 전환
-    @Bean // @Bean Spring Container 등록
-    public MemberService memberService(){
-        return new MemberServiceImpl(memberRepository());
-    }
-    @Bean
-    public OrderService orderService(){
-        return new OrderServiceImpl(memberRepository(), discountPolicy());
-    }
-    @Bean
-    public MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
-    }
-    @Bean
-    public DiscountPolicy discountPolicy() {
-        // return new FixDiscountPolocy();
-        // AppConfig의 등장으로 애플리케이션이 크게 사용 영역과, 객체를 생성하고 구성(Configuration)하는 영역으로 분리되었다.
-        return new RateDiscountPolicy();
+        @Bean // @Bean Spring Container 등록
+        public MemberService memberService(){
+            return new MemberServiceImpl(memberRepository());
+        }
+        @Bean
+        public OrderService orderService(){
+            return new OrderServiceImpl(memberRepository(), discountPolicy());
+        }
+        @Bean
+        public MemberRepository memberRepository() {
+            return new MemoryMemberRepository();
+        }
+        @Bean
+        public DiscountPolicy discountPolicy() {
+            // return new FixDiscountPolocy();
+            // AppConfig의 등장으로 애플리케이션이 크게 사용 영역과, 객체를 생성하고 구성(Configuration)하는 영역으로 분리되었다.
+            return new RateDiscountPolicy();
     }
 
 }
