@@ -9,6 +9,7 @@ import hello.core.order.OrderServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 @Configuration // 설정파일
 public class AppConfig {
 
@@ -44,14 +45,17 @@ public class AppConfig {
     // 3. 2.의 코드를 Spring 전환
         @Bean // @Bean Spring Container 등록
         public MemberService memberService(){
+            System.out.println("call AppConfig.memberService");
             return new MemberServiceImpl(memberRepository());
         }
         @Bean
         public OrderService orderService(){
+            System.out.println("call AppConfig.orderService");
             return new OrderServiceImpl(memberRepository(), discountPolicy());
         }
         @Bean
         public MemberRepository memberRepository() {
+            System.out.println("call AppConfig.memberRepository");
             return new MemoryMemberRepository();
         }
         @Bean

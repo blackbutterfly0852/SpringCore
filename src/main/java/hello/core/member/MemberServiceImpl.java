@@ -23,4 +23,10 @@ public class MemberServiceImpl implements MemberService{
         return memberRepository.findById(memberId);
 
     }
+
+    // @Bean 객체를 두 번 호출 했을 때 깨지는지 TEST
+    public MemberRepository getMemberRepository(){
+        return memberRepository;
+    }
+
 }

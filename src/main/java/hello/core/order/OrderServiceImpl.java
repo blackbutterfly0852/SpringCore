@@ -30,4 +30,11 @@ public class OrderServiceImpl implements OrderService {
         int discountPrice = discountPolicy.discount(member, itemPrice);
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
+
+    // @Bean 객체를 두 번 호출 했을 때 깨지는지 TEST
+    public MemberRepository getMemberRepository(){
+        return memberRepository;
+    }
+
+
 }
