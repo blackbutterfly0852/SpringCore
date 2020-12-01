@@ -53,16 +53,18 @@ public class AppConfig {
             System.out.println("call AppConfig.orderService");
             return new OrderServiceImpl(memberRepository(), discountPolicy());
         }
+
         @Bean
         public MemberRepository memberRepository() {
             System.out.println("call AppConfig.memberRepository");
             return new MemoryMemberRepository();
         }
-        @Bean
+
+         @Bean
         public DiscountPolicy discountPolicy() {
             // return new FixDiscountPolocy();
             // AppConfig의 등장으로 애플리케이션이 크게 사용 영역과, 객체를 생성하고 구성(Configuration)하는 영역으로 분리되었다.
             return new RateDiscountPolicy();
-    }
+        }
 
 }
