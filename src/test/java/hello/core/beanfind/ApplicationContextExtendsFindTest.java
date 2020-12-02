@@ -2,7 +2,7 @@ package hello.core.beanfind;
 
 import hello.core.AppConfig;
 import hello.core.discount.DiscountPolicy;
-import hello.core.discount.FixDiscountPolocy;
+import hello.core.discount.FixDiscountPolicy;
 import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.MemberRepository;
 import org.junit.jupiter.api.Assertions;
@@ -77,7 +77,7 @@ public class ApplicationContextExtendsFindTest {
 
         @Bean
         public DiscountPolicy fixDiscountPolicy(){
-            return  new FixDiscountPolocy();
+            return  new FixDiscountPolicy();
         }
 
     }
